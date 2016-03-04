@@ -38,7 +38,7 @@ namespace VisioImportExportVba
 
         public void OnRibbonButtonCheckClick(Office.IRibbonControl control, bool pressed)
         {
-            Globals.ThisAddIn.OnCommand(control.Id);
+            Globals.ThisAddIn.OnCommandCheck(control.Id, pressed);
         }
 
         public void OnRibbonButtonClick(Office.IRibbonControl control)

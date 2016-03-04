@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisioImportExportVba", "VisioImportExportVba\VisioImportExportVba\VisioImportExportVba.csproj", "{76500C88-175E-4BDD-A482-B11AF69A181B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addin", "Addin\VisioImportExportVba.csproj", "{76500C88-175E-4BDD-A482-B11AF69A181B}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "VisioImportExportVba\Setup\Setup.wixproj", "{11D613CD-598C-48B2-B3CC-B68095807C4E}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixproj", "{11D613CD-598C-48B2-B3CC-B68095807C4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,7 +32,6 @@ Global
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Debug|x86.ActiveCfg = Debug|x86
-		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Debug|x86.Build.0 = Debug|x86
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Release|Any CPU.ActiveCfg = Release|x86
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{11D613CD-598C-48B2-B3CC-B68095807C4E}.Release|Mixed Platforms.Build.0 = Release|x86

@@ -117,32 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
-  <data name="Command1_Label" xml:space="preserve">
-    <value>command 1</value>
+  <data name="ExportVBA_Label" xml:space="preserve">
+    <value>Export VBA</value>
   </data>
-  <data name="Command2_Label" xml:space="preserve">
-    <value>command 2</value>
+  <data name="ImportVBA_Label" xml:space="preserve">
+    <value>Import VBA</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-   
-  <data name="Command1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Command1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ExportVBA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExportVBA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-   
-  <data name="Command2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Command2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ImportVBA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportVBA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-   
-  <data name="Command1_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Command1_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ExportVBA_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExportVBA_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Command2_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Command2_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ImportVBA_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportVBA_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-      
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  
+  <data name="ClearBeforeImport_Label" xml:space="preserve">
+    <value>Clear before import</value>
+  </data>
+  <data name="IncludeStencils_Label" xml:space="preserve">
+    <value>Include stencils</value>
+  </data>
 </root>
