@@ -72,6 +72,16 @@ namespace VisioImportExportVba.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ClearBeforeImport_sm {
+            get {
+                object obj = ResourceManager.GetObject("ClearBeforeImport_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ExportVBA {
             get {
                 object obj = ResourceManager.GetObject("ExportVBA", resourceCulture);
@@ -94,6 +104,25 @@ namespace VisioImportExportVba.Properties {
         internal static System.Drawing.Bitmap ExportVBA_sm {
             get {
                 object obj = ResourceManager.GetObject("ExportVBA_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export VBA to a Folder ....
+        /// </summary>
+        internal static string ExportVBAFolder_Label {
+            get {
+                return ResourceManager.GetString("ExportVBAFolder_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExportVBAFolder_sm {
+            get {
+                object obj = ResourceManager.GetObject("ExportVBAFolder_sm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -128,11 +157,40 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import VBA from a Folder ....
+        /// </summary>
+        internal static string ImportVBAFolder_Label {
+            get {
+                return ResourceManager.GetString("ImportVBAFolder_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImportVBAFolder_sm {
+            get {
+                object obj = ResourceManager.GetObject("ImportVBAFolder_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include stencils.
         /// </summary>
         internal static string IncludeStencils_Label {
             get {
                 return ResourceManager.GetString("IncludeStencils_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IncludeStencils_sm {
+            get {
+                object obj = ResourceManager.GetObject("IncludeStencils_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -144,8 +202,9 @@ namespace VisioImportExportVba.Properties {
         ///      &lt;tab idMso=&quot;TabDeveloper&quot;&gt;
         ///        &lt;group id=&quot;Group1&quot; label=&quot;VBA Import Export&quot;&gt;
         ///
-        ///          &lt;button id=&quot;ExportVBA&quot; size=&quot;large&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbonButtonClick&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot; getImage=&quot;GetRibbonImage&quot; /&gt;
-        ///          &lt;button id=&quot;ImportVBA&quot; size=&quot;large&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbo [rest of string was truncated]&quot;;.
+        ///          &lt;splitButton id=&quot;ddExportVBA&quot; size=&quot;large&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot;&gt;
+        ///            &lt;button id=&quot;ExportVBA&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbonButtonClick&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot; getImage=&quot;GetRibbonImage&quot; /&gt;
+        ///            [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

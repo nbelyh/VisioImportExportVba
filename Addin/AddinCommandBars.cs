@@ -66,6 +66,8 @@ namespace VisioImportExportVba
             return cbs.Cast<CommandBar>().FirstOrDefault(cb => cb.Name == name);
         }
 
+        private bool _beginGrouop;
+
         private void UpdateToolbar()
         {
             var cbs = (CommandBars)Globals.ThisAddIn.Application.CommandBars;
@@ -73,12 +75,19 @@ namespace VisioImportExportVba
             var cb = FindCommandBar(cbs, _toolbarName) ?? cbs.Add(_toolbarName);
             cb.Visible = true;
 
+            _beginGrouop = false;
             foreach (var id in _commands)
                 InstallButton(cb, id);
         }
 
         private void InstallButton(CommandBar cb, string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                _beginGrouop = true;
+                return;
+            }
+
             CommandBarButton thisButton;
             _buttons.TryGetValue(id, out thisButton);
 
@@ -98,6 +107,7 @@ namespace VisioImportExportVba
             var checkState = Globals.ThisAddIn.IsCommandChecked(id);
             button.State = checkState ? MsoButtonState.msoButtonDown : MsoButtonState.msoButtonUp;
 
+            button.BeginGroup = _beginGrouop;
             button.Tag = id;
             button.Caption = Globals.ThisAddIn.GetCommandLabel(id);
             SetCommandBarButtonImage(button, id);

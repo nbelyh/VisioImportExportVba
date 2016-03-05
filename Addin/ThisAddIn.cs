@@ -19,7 +19,7 @@ namespace VisioImportExportVba
             return AddinUI;
         }
 
-        public void ExportVBA(string path, Settings settings)
+        public void ExportVBA(string folder, Settings settings)
         {
             var window = Application.ActiveWindow;
             if (window == null)
@@ -29,7 +29,7 @@ namespace VisioImportExportVba
             {
                 case Visio.VisWinTypes.visDrawing:
 
-                    ExportVBA(window.Document, path);
+                    ExportVBA(window.Document, folder);
 
                     if (settings.IncludeStencils)
                     {
@@ -38,13 +38,13 @@ namespace VisioImportExportVba
                         foreach (var stencilName in stencilNames)
                         {
                             var stencilDoc = Application.Documents[stencilName];
-                            ExportVBA(stencilDoc, Path.Combine(path, stencilDoc.Name));
+                            ExportVBA(stencilDoc, Path.Combine(folder, stencilDoc.Name));
                         }
                     }
                     break;
 
                 case Visio.VisWinTypes.visStencil:
-                    ExportVBA(window.Document, path);
+                    ExportVBA(window.Document, folder);
                     break;
             }
         }
@@ -107,14 +107,14 @@ namespace VisioImportExportVba
         /// The command gets enabled only when a shape is selected
         /// </summary>
 
-        public void ImportVBA(string path, Settings settings)
+        public void ImportVBA(string folder, Settings settings)
         {
             var window = Application.ActiveWindow;
             switch ((Visio.VisWinTypes)window.Type)
             {
                 case Visio.VisWinTypes.visDrawing:
                     {
-                        ImportVBA(window.Document, path, settings);
+                        ImportVBA(window.Document, folder, settings);
 
                         if (settings.IncludeStencils)
                         {
@@ -134,14 +134,14 @@ namespace VisioImportExportVba
                                     stencilDoc = Application.Documents.OpenEx(stencilName, flags);
                                 }
 
-                                ImportVBA(stencilDoc, Path.Combine(path, stencilDoc.Name), settings);
+                                ImportVBA(stencilDoc, Path.Combine(folder, stencilDoc.Name), settings);
                             }
                         }
                     }
                     break;
 
                 case Visio.VisWinTypes.visStencil:
-                    ImportVBA(window.Document, path, settings);
+                    ImportVBA(window.Document, folder, settings);
                     break;
             }
         }
@@ -220,6 +220,19 @@ namespace VisioImportExportVba
                 switch (commandId)
                 {
                     case "ExportVBA":
+                        if (string.IsNullOrEmpty(settings.TargetFolder))
+                        {
+                            OnCommand("ExportVBAFolder");
+                            return;
+                        }
+
+                        ExportVBA(settings.TargetFolder, settings);
+                        MessageBox.Show(
+                            string.Format("The VBA code was successfully exported from the document {0} to the folder {1} ", doc.Name, settings.TargetFolder),
+                            "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+
+                    case "ExportVBAFolder":
                         var exportFolderBrowser = new FolderBrowser2
                         {
                             DirectoryPath = settings.TargetFolder
@@ -229,13 +242,24 @@ namespace VisioImportExportVba
                             settings.TargetFolder = exportFolderBrowser.DirectoryPath;
                             SettingsManager.Store(doc, settings);
 
-                            ExportVBA(exportFolderBrowser.DirectoryPath, settings);
-                            MessageBox.Show("The VBA code was successfully exported to the selected folder",
-                                "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            OnCommand("ExportVBA");
                         }
                         return;
 
                     case "ImportVBA":
+                        if (string.IsNullOrEmpty(settings.TargetFolder))
+                        {
+                            OnCommand("ImportVBAFolder");
+                            return;
+                        }
+
+                        ImportVBA(settings.TargetFolder, settings);
+                        MessageBox.Show(
+                            string.Format("The VBA code was successfully imported from the folder {0} to the document {1}", settings.TargetFolder, doc.Name),
+                            "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+
+                    case "ImportVBAFolder":
                         var importFolderBrowser = new FolderBrowser2
                         {
                             DirectoryPath = settings.TargetFolder
@@ -245,39 +269,31 @@ namespace VisioImportExportVba
                             settings.TargetFolder = importFolderBrowser.DirectoryPath;
                             SettingsManager.Store(doc, settings);
 
-                            ImportVBA(importFolderBrowser.DirectoryPath, settings);
-                            MessageBox.Show("The VBA code was successfully imported from to the selected folder",
-                                "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            OnCommand("ImportVBA");
                         }
                         return;
+
+                    case "ClearBeforeImport":
+                        {
+                            settings.ClearBeforeImport = !settings.ClearBeforeImport;
+                            SettingsManager.Store(doc, settings);
+                            UpdateUI();
+                        }
+                        break;
+
+                    case "IncludeStencils":
+                        {
+                            settings.IncludeStencils = !settings.IncludeStencils;
+                            SettingsManager.Store(doc, settings);
+                            UpdateUI();
+                        }
+                        break;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }
-
-        public void OnCommandCheck(string commandId, bool pressed)
-        {
-            var doc = Application.ActiveDocument;
-            if (doc == null)
-                return;
-
-            var settings = SettingsManager.LoadOrCreate(Application.ActiveDocument);
-
-            switch (commandId)
-            {
-                case "ClearBeforeImport":
-                    settings.ClearBeforeImport = pressed;
-                    break;
-
-                case "IncludeStencils":
-                    settings.IncludeStencils = pressed;
-                    break;
-            }
-
-            SettingsManager.Store(doc, settings);
         }
 
         /// <summary>
@@ -289,8 +305,12 @@ namespace VisioImportExportVba
         {
             switch (commandId)
             {
+                case "ddExportVBA":
+                case "ddImportVBA":
                 case "ExportVBA":
                 case "ImportVBA":
+                case "ExportVBAFolder":
+                case "ImportVBAFolder":
                 case "ClearBeforeImport":
                     return Application != null && Application.ActiveWindow != null;
 
@@ -360,7 +380,11 @@ namespace VisioImportExportVba
                 AddinUI.StartupCommandBars("VisioImportExportVba", new[]
                 {
                     "ExportVBA", 
+                    "ExportVBAFolder", 
+                    "",
                     "ImportVBA",
+                    "ImportVBAFolder",
+                    "",
                     "ClearBeforeImport",
                     "IncludeStencils"
                 });

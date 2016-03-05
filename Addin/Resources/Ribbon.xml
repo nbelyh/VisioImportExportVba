@@ -5,8 +5,19 @@
       <tab idMso="TabDeveloper">
         <group id="Group1" label="VBA Import Export">
 
-          <button id="ExportVBA" size="large" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
-          <button id="ImportVBA" size="large" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+          <splitButton id="ddExportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
+            <button id="ExportVBA" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            <menu>
+              <button id="ExportVBAFolder" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="ddImportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
+            <button id="ImportVBA" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            <menu>
+              <button id="ImportVBAFolder" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            </menu>
+          </splitButton>
 
           <separator id="s1" />
 
