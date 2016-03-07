@@ -30,6 +30,9 @@
     <!-- allow fast installation -->
     <Property Id="MSIFASTINSTALL" Value="7" />
 
+    <Icon Id="icon.ico" SourceFile="icon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="Setup" Level="1">
