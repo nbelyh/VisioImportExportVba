@@ -110,6 +110,7 @@ namespace VisioImportExportVba
             button.BeginGroup = _beginGrouop;
             button.Tag = id;
             button.Caption = Globals.ThisAddIn.GetCommandLabel(id);
+            button.DescriptionText = Globals.ThisAddIn.GetCommandSupertip(id);
             SetCommandBarButtonImage(button, id);
 
             button.Click += CommandBarButtonClicked;
