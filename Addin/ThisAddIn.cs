@@ -353,6 +353,16 @@ namespace VisioImportExportVba
             return Resources.ResourceManager.GetString(command + "_Label");
         }
 
+        public string GetCommandScreentip(string command)
+        {
+            return Resources.ResourceManager.GetString(command + "_Screentip");
+        }
+
+        public string GetCommandSupertip(string command)
+        {
+            return Resources.ResourceManager.GetString(command + "_Supertip");
+        }
+
         /// <summary>
         /// Returns a bitmap associated with given command.
         /// We assume for simplicity that bitmap ids are named after command id.

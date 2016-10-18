@@ -163,4 +163,40 @@
   <data name="ImportVBAFolder_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImportVBAFolder_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ClearBeforeImport_Screentip" xml:space="preserve">
+    <value>Remove all VBA code from the target document/stencils</value>
+  </data>
+  <data name="ExportVBAFolder_Screentip" xml:space="preserve">
+    <value>Select a folder and then export VBA code to that folder</value>
+  </data>
+  <data name="ExportVBA_Screentip" xml:space="preserve">
+    <value>Export VBA (using last used folder)</value>
+  </data>
+  <data name="ImportVBAFolder_Screentip" xml:space="preserve">
+    <value>Select a folder and then import VBAfrom that folder</value>
+  </data>
+  <data name="ImportVBA_Screentip" xml:space="preserve">
+    <value>Import VBA (using last used folder)</value>
+  </data>
+  <data name="IncludeStencils_Screentip" xml:space="preserve">
+    <value>Import/export also the code in the docked stencils</value>
+  </data>
+  <data name="ClearBeforeImport_Supertip" xml:space="preserve">
+    <value>Remove all VBA code from the target document/stencils before starting the import (clean import). Ensures that code in the document/stencil does not contain anything except imported code.</value>
+  </data>
+  <data name="ExportVBAFolder_Supertip" xml:space="preserve">
+    <value>Select a folder and then export VBA code to that folder. Prompts for the target folder and sets is as "last used"</value>
+  </data>
+  <data name="ExportVBA_Supertip" xml:space="preserve">
+    <value>Export VBA code from the active document to the last used folder. If there is no "last used folder" then prompts for the folder.</value>
+  </data>
+  <data name="ImportVBAFolder_Supertip" xml:space="preserve">
+    <value>Select a folder and then import VBAfrom that folder into current document. Prompts for the target folder and sets is as "last used"</value>
+  </data>
+  <data name="ImportVBA_Supertip" xml:space="preserve">
+    <value>Import VBA from the last used folder into the current document. If there is no "last used folder" then prompts for the folder.</value>
+  </data>
+  <data name="IncludeStencils_Supertip" xml:space="preserve">
+    <value>Import/export also the code in the docked stencils. The code is imported from / exported to to sub-folders in the selected folder</value>
+  </data>
 </root>

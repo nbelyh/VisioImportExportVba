@@ -51,6 +51,16 @@ namespace VisioImportExportVba
             return Globals.ThisAddIn.GetCommandLabel(control.Id);
         }
 
+        public string OnGetRibbonScreentip(Office.IRibbonControl control)
+        {
+            return Globals.ThisAddIn.GetCommandScreentip(control.Id);
+        }
+
+        public string OnGetRibbonSupertip(Office.IRibbonControl control)
+        {
+            return Globals.ThisAddIn.GetCommandSupertip(control.Id);
+        }
+
         public void OnRibbonLoad(Office.IRibbonUI ribbonUI)
         {
             _ribbon = ribbonUI;

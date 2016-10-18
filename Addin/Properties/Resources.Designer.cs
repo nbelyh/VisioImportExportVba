@@ -70,12 +70,30 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove all VBA code from the target document/stencils.
+        /// </summary>
+        internal static string ClearBeforeImport_Screentip {
+            get {
+                return ResourceManager.GetString("ClearBeforeImport_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ClearBeforeImport_sm {
             get {
                 object obj = ResourceManager.GetObject("ClearBeforeImport_sm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all VBA code from the target document/stencils before starting the import (clean import). Ensures that code in the document/stencil does not contain anything except imported code..
+        /// </summary>
+        internal static string ClearBeforeImport_Supertip {
+            get {
+                return ResourceManager.GetString("ClearBeforeImport_Supertip", resourceCulture);
             }
         }
         
@@ -99,12 +117,30 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export VBA (using last used folder).
+        /// </summary>
+        internal static string ExportVBA_Screentip {
+            get {
+                return ResourceManager.GetString("ExportVBA_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ExportVBA_sm {
             get {
                 object obj = ResourceManager.GetObject("ExportVBA_sm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export VBA code from the active document to the last used folder. If there is no &quot;last used folder&quot; then prompts for the folder..
+        /// </summary>
+        internal static string ExportVBA_Supertip {
+            get {
+                return ResourceManager.GetString("ExportVBA_Supertip", resourceCulture);
             }
         }
         
@@ -118,12 +154,30 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a folder and then export VBA code to that folder.
+        /// </summary>
+        internal static string ExportVBAFolder_Screentip {
+            get {
+                return ResourceManager.GetString("ExportVBAFolder_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ExportVBAFolder_sm {
             get {
                 object obj = ResourceManager.GetObject("ExportVBAFolder_sm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder and then export VBA code to that folder. Prompts for the target folder and sets is as &quot;last used&quot;.
+        /// </summary>
+        internal static string ExportVBAFolder_Supertip {
+            get {
+                return ResourceManager.GetString("ExportVBAFolder_Supertip", resourceCulture);
             }
         }
         
@@ -147,6 +201,15 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import VBA (using last used folder).
+        /// </summary>
+        internal static string ImportVBA_Screentip {
+            get {
+                return ResourceManager.GetString("ImportVBA_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ImportVBA_sm {
@@ -157,11 +220,29 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import VBA from the last used folder into the current document. If there is no &quot;last used folder&quot; then prompts for the folder..
+        /// </summary>
+        internal static string ImportVBA_Supertip {
+            get {
+                return ResourceManager.GetString("ImportVBA_Supertip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import VBA from a Folder ....
         /// </summary>
         internal static string ImportVBAFolder_Label {
             get {
                 return ResourceManager.GetString("ImportVBAFolder_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder and then import VBAfrom that folder.
+        /// </summary>
+        internal static string ImportVBAFolder_Screentip {
+            get {
+                return ResourceManager.GetString("ImportVBAFolder_Screentip", resourceCulture);
             }
         }
         
@@ -176,11 +257,29 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a folder and then import VBAfrom that folder into current document. Prompts for the target folder and sets is as &quot;last used&quot;.
+        /// </summary>
+        internal static string ImportVBAFolder_Supertip {
+            get {
+                return ResourceManager.GetString("ImportVBAFolder_Supertip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include stencils.
         /// </summary>
         internal static string IncludeStencils_Label {
             get {
                 return ResourceManager.GetString("IncludeStencils_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import/export also the code in the docked stencils.
+        /// </summary>
+        internal static string IncludeStencils_Screentip {
+            get {
+                return ResourceManager.GetString("IncludeStencils_Screentip", resourceCulture);
             }
         }
         
@@ -195,6 +294,15 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import/export also the code in the docked stencils. The code is imported from / exported to to sub-folders in the selected folder.
+        /// </summary>
+        internal static string IncludeStencils_Supertip {
+            get {
+                return ResourceManager.GetString("IncludeStencils_Supertip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
         ///&lt;customUI xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot; onLoad=&quot;OnRibbonLoad&quot;&gt;
         ///  &lt;ribbon&gt;
@@ -203,8 +311,8 @@ namespace VisioImportExportVba.Properties {
         ///        &lt;group id=&quot;Group1&quot; label=&quot;VBA Import Export&quot;&gt;
         ///
         ///          &lt;splitButton id=&quot;ddExportVBA&quot; size=&quot;large&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot;&gt;
-        ///            &lt;button id=&quot;ExportVBA&quot; getLabel=&quot;OnGetRibbonLabel&quot; onAction=&quot;OnRibbonButtonClick&quot; getEnabled=&quot;IsRibbonCommandEnabled&quot; getImage=&quot;GetRibbonImage&quot; /&gt;
-        ///            [rest of string was truncated]&quot;;.
+        ///            &lt;button id=&quot;ExportVBA&quot; getLabel=&quot;OnGetRibbonLabel&quot; 
+        ///                    getScreentip=&quot;OnGetRibbonScreentip&quot; getSupertip=&quot;OnGetRibbonSupertip&quot; onAction=&quot;OnRibb [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

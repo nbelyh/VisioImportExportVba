@@ -6,23 +6,30 @@
         <group id="Group1" label="VBA Import Export">
 
           <splitButton id="ddExportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
-            <button id="ExportVBA" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            <button id="ExportVBA" getLabel="OnGetRibbonLabel" 
+                    getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             <menu>
-              <button id="ExportVBAFolder" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+              <button id="ExportVBAFolder" getLabel="OnGetRibbonLabel" 
+                      getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             </menu>
           </splitButton>
 
           <splitButton id="ddImportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
-            <button id="ImportVBA" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            <button id="ImportVBA" getLabel="OnGetRibbonLabel" 
+                    getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             <menu>
-              <button id="ImportVBAFolder" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+              <button id="ImportVBAFolder" getLabel="OnGetRibbonLabel" 
+                      getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             </menu>
           </splitButton>
 
           <separator id="s1" />
 
-          <checkBox id="IncludeStencils" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonCheckClick" getEnabled="IsRibbonCommandEnabled" getPressed="IsRibbonCommandChecked" />
-          <checkBox id="ClearBeforeImport" getLabel="OnGetRibbonLabel" onAction="OnRibbonButtonCheckClick" getEnabled="IsRibbonCommandEnabled" getPressed="IsRibbonCommandChecked" />
+          <checkBox id="IncludeStencils" getLabel="OnGetRibbonLabel" 
+                    getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonCheckClick" getEnabled="IsRibbonCommandEnabled" getPressed="IsRibbonCommandChecked" />
+          
+          <checkBox id="ClearBeforeImport" getLabel="OnGetRibbonLabel" 
+                    getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonCheckClick" getEnabled="IsRibbonCommandEnabled" getPressed="IsRibbonCommandChecked" />
                     
         </group>
       </tab>
