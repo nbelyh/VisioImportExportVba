@@ -246,6 +246,12 @@ namespace VisioImportExportVba
                         }
                         return;
 
+                    case "BatchImportVBA":
+                        break;
+
+                    case "BatchImportVBAFolder":
+                        break;
+
                     case "ImportVBA":
                         if (string.IsNullOrEmpty(settings.TargetFolder))
                         {
@@ -305,6 +311,11 @@ namespace VisioImportExportVba
         {
             switch (commandId)
             {
+                case "ddBatchImportVBA":
+                case "BatchImportVBA":
+                case "BatchImportVBAFolder":
+                    return Application != null;
+
                 case "ddExportVBA":
                 case "ddImportVBA":
                 case "ExportVBA":
@@ -390,10 +401,13 @@ namespace VisioImportExportVba
                 AddinUI.StartupCommandBars("VisioImportExportVba", new[]
                 {
                     "ExportVBA", 
-                    "ExportVBAFolder", 
+                    "ExportVBAFolder",
                     "",
                     "ImportVBA",
                     "ImportVBAFolder",
+                    "",
+                    "BatchImportVBA",
+                    "BatchImportVBAFolder",
                     "",
                     "ClearBeforeImport",
                     "IncludeStencils"

@@ -167,16 +167,16 @@
     <value>Remove all VBA code from the target document/stencils</value>
   </data>
   <data name="ExportVBAFolder_Screentip" xml:space="preserve">
-    <value>Select a folder and then export VBA code to that folder</value>
+    <value>Export VBA to a Folder</value>
   </data>
   <data name="ExportVBA_Screentip" xml:space="preserve">
-    <value>Export VBA (using last used folder)</value>
+    <value>Export VBA (using last settings)</value>
   </data>
   <data name="ImportVBAFolder_Screentip" xml:space="preserve">
-    <value>Select a folder and then import VBAfrom that folder</value>
+    <value>Import VBA from a Folder</value>
   </data>
   <data name="ImportVBA_Screentip" xml:space="preserve">
-    <value>Import VBA (using last used folder)</value>
+    <value>Import VBA (using last settings)</value>
   </data>
   <data name="IncludeStencils_Screentip" xml:space="preserve">
     <value>Import/export also the code in the docked stencils</value>
@@ -191,12 +191,39 @@
     <value>Export VBA code from the active document to the last used folder. If there is no "last used folder" then prompts for the folder.</value>
   </data>
   <data name="ImportVBAFolder_Supertip" xml:space="preserve">
-    <value>Select a folder and then import VBAfrom that folder into current document. Prompts for the target folder and sets is as "last used"</value>
+    <value>Select a folder and then import VBA from that folder into current document. Prompts for the target folder and sets is as "last used"</value>
   </data>
   <data name="ImportVBA_Supertip" xml:space="preserve">
     <value>Import VBA from the last used folder into the current document. If there is no "last used folder" then prompts for the folder.</value>
   </data>
   <data name="IncludeStencils_Supertip" xml:space="preserve">
     <value>Import/export also the code in the docked stencils. The code is imported from / exported to to sub-folders in the selected folder</value>
+  </data>
+  <data name="BatchImportVBAFolder_Label" xml:space="preserve">
+    <value>Batch Import VBA from a Folder ...</value>
+  </data>
+  <data name="BatchImportVBAFolder_Screentip" xml:space="preserve">
+    <value>Select a folder and Set of Visio files, then import that folder</value>
+  </data>
+  <data name="BatchImportVBAFolder_Supertip" xml:space="preserve">
+    <value>Select a folder and then import VBAfrom that folder into each of the selected Visio documents (batch processing). Prompts for the VBAfolder and list of the Visio documents.</value>
+  </data>
+  <data name="BatchImportVBA_Label" xml:space="preserve">
+    <value>Batch Import VBA...</value>
+  </data>
+  <data name="BatchImportVBA_Screentip" xml:space="preserve">
+    <value>Batch Import VBA (using last settings)</value>
+  </data>
+  <data name="BatchImportVBA_Supertip" xml:space="preserve">
+    <value>Import VBA from the last used folder into all of the selected Visio document. If there is no "last used folder" or no "last selected documents" then prompts for the folder or documents.</value>
+  </data>
+  <data name="BatchImportVBA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BatchImportVBA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BatchImportVBAFolder_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BatchImportVBAFolder_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BatchImportVBA_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BatchImportVBA_sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

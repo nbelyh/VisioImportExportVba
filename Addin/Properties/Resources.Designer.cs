@@ -61,6 +61,90 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BatchImportVBA {
+            get {
+                object obj = ResourceManager.GetObject("BatchImportVBA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch Import VBA....
+        /// </summary>
+        internal static string BatchImportVBA_Label {
+            get {
+                return ResourceManager.GetString("BatchImportVBA_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch Import VBA (using last settings).
+        /// </summary>
+        internal static string BatchImportVBA_Screentip {
+            get {
+                return ResourceManager.GetString("BatchImportVBA_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BatchImportVBA_sm {
+            get {
+                object obj = ResourceManager.GetObject("BatchImportVBA_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import VBA from the last used folder into all of the selected Visio document. If there is no &quot;last used folder&quot; or no &quot;last selected documents&quot; then prompts for the folder or documents..
+        /// </summary>
+        internal static string BatchImportVBA_Supertip {
+            get {
+                return ResourceManager.GetString("BatchImportVBA_Supertip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch Import VBA from a Folder ....
+        /// </summary>
+        internal static string BatchImportVBAFolder_Label {
+            get {
+                return ResourceManager.GetString("BatchImportVBAFolder_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder and Set of Visio files, then import that folder.
+        /// </summary>
+        internal static string BatchImportVBAFolder_Screentip {
+            get {
+                return ResourceManager.GetString("BatchImportVBAFolder_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BatchImportVBAFolder_sm {
+            get {
+                object obj = ResourceManager.GetObject("BatchImportVBAFolder_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder and then import VBAfrom that folder into each of the selected Visio documents (batch processing). Prompts for the VBAfolder and list of the Visio documents..
+        /// </summary>
+        internal static string BatchImportVBAFolder_Supertip {
+            get {
+                return ResourceManager.GetString("BatchImportVBAFolder_Supertip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear before import.
         /// </summary>
         internal static string ClearBeforeImport_Label {
@@ -117,7 +201,7 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export VBA (using last used folder).
+        ///   Looks up a localized string similar to Export VBA (using last settings).
         /// </summary>
         internal static string ExportVBA_Screentip {
             get {
@@ -154,7 +238,7 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a folder and then export VBA code to that folder.
+        ///   Looks up a localized string similar to Export VBA to a Folder.
         /// </summary>
         internal static string ExportVBAFolder_Screentip {
             get {
@@ -201,7 +285,7 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import VBA (using last used folder).
+        ///   Looks up a localized string similar to Import VBA (using last settings).
         /// </summary>
         internal static string ImportVBA_Screentip {
             get {
@@ -238,7 +322,7 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a folder and then import VBAfrom that folder.
+        ///   Looks up a localized string similar to Import VBA from a Folder.
         /// </summary>
         internal static string ImportVBAFolder_Screentip {
             get {
@@ -257,7 +341,7 @@ namespace VisioImportExportVba.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a folder and then import VBAfrom that folder into current document. Prompts for the target folder and sets is as &quot;last used&quot;.
+        ///   Looks up a localized string similar to Select a folder and then import VBA from that folder into current document. Prompts for the target folder and sets is as &quot;last used&quot;.
         /// </summary>
         internal static string ImportVBAFolder_Supertip {
             get {

@@ -15,10 +15,19 @@
           </splitButton>
 
           <splitButton id="ddImportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
-            <button id="ImportVBA" getLabel="OnGetRibbonLabel" 
+            <button id="ImportVBA" getLabel="OnGetRibbonLabel"
                     getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             <menu>
-              <button id="ImportVBAFolder" getLabel="OnGetRibbonLabel" 
+              <button id="ImportVBAFolder" getLabel="OnGetRibbonLabel"
+                      getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="ddBatchImportVBA" size="large" getEnabled="IsRibbonCommandEnabled">
+            <button id="BatchImportVBA" getLabel="OnGetRibbonLabel"
+                    getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
+            <menu>
+              <button id="BatchImportVBAFolder" getLabel="OnGetRibbonLabel"
                       getScreentip="OnGetRibbonScreentip" getSupertip="OnGetRibbonSupertip" onAction="OnRibbonButtonClick" getEnabled="IsRibbonCommandEnabled" getImage="GetRibbonImage" />
             </menu>
           </splitButton>
