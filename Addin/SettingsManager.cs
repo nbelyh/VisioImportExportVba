@@ -1,19 +1,10 @@
-﻿using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Office.Interop.Visio;
 
-namespace VisioImportExportVba
+namespace ImportExportVbaLib
 {
-    [Serializable]
-    public class Settings
-    {
-        public bool ClearBeforeImport { get; set; }
-        public bool IncludeStencils { get; set; }
-        public string TargetFolder { get; set; }
-    }
-
     public class SettingsManager
     {
         private const string SolutionXmlNamespace = "http://unmanagedvisio.com";

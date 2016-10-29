@@ -5,11 +5,10 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	xmlns:visio="http://schemas.microsoft.com/wix/Visio" >
 
-  <?define Version="1.0.0.0"?>
-  <?define ProductCode = "{a8f6a643-4232-4fa0-ba82-366794a732e6}" ?>
+  <?define Version="1.0.1.0"?>
   <?define UpgradeCode = "{64a3d6e9-3585-45cc-9c09-7336baac6476}" ?>
 
-  <Product Id="$(var.ProductCode)" Name="VisioImportExportVba" Language="1033" Version="$(var.Version)" Manufacturer="UnmanagedVisio" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="VisioImportExportVba" Language="1033" Version="$(var.Version)" Manufacturer="UnmanagedVisio" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" Compressed="yes" />
 
     <!-- check taht .NET 4 (client profile at least) is installed -->
@@ -67,22 +66,33 @@
     
     <!-- Addin files to be included in setup -->
     <ComponentGroup Id="AddinFiles" Directory="APPLICATIONFOLDER">
+
+      <Component>
+        <File Source="$(var.ImportExportVbaLib.TargetPath)" />
+      </Component>
+
+      <Component>
+        <File Source="$(var.vba_import_export.TargetPath)" />
+      </Component>
       
+      <Component>
+        <File Source="$(var.vba_import_export.TargetDir)CommandLine.dll" />
+      </Component>
+     
+
       <!-- Add the addin dll to the setup. Reference using project referencing -->
       <Component>
-        <File Source="$(var.VisioImportExportVba.TargetPath)" >
-          
-        </File>
+        <File Source="$(var.VisioImportExportVba.TargetPath)" />
       </Component>
       
       <!-- VSTO framework file -->
       <Component>
-        <File Source="$(var.VisioImportExportVba.TargetDir)Microsoft.Office.Tools.Common.v4.0.Utilities.dll"></File>
+        <File Source="$(var.VisioImportExportVba.TargetDir)Microsoft.Office.Tools.Common.v4.0.Utilities.dll"/>
       </Component>
 
       <!-- Add the addin manifest file -->
       <Component>
-        <File Source="$(var.VisioImportExportVba.TargetPath).manifest"></File>
+        <File Source="$(var.VisioImportExportVba.TargetPath).manifest"/>
       </Component>
       
       <!--  The .vsto file is addin discovery file. Set up registry to point to this file using |vstolocal -->

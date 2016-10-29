@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ImportExportVbaLib;
 using Office = Microsoft.Office.Core;
 using VisioImportExportVba.Properties;
 using Visio = Microsoft.Office.Interop.Visio;
@@ -17,192 +18,6 @@ namespace VisioImportExportVba
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
             return AddinUI;
-        }
-
-        public void ExportVBA(string folder, Settings settings)
-        {
-            var window = Application.ActiveWindow;
-            if (window == null)
-                return;
-            
-            switch ((Visio.VisWinTypes)window.Type)
-            {
-                case Visio.VisWinTypes.visDrawing:
-
-                    ExportVBA(window.Document, folder);
-
-                    if (settings.IncludeStencils)
-                    {
-                        Array stencilNames;
-                        window.DockedStencils(out stencilNames);
-                        foreach (var stencilName in stencilNames)
-                        {
-                            var stencilDoc = Application.Documents[stencilName];
-                            ExportVBA(stencilDoc, Path.Combine(folder, stencilDoc.Name));
-                        }
-                    }
-                    break;
-
-                case Visio.VisWinTypes.visStencil:
-                    ExportVBA(window.Document, folder);
-                    break;
-            }
-        }
-
-        string GetComponentFileExtension(dynamic component)
-        {
-            int componentType = Convert.ToInt32(component.Type);
-            switch (componentType)
-            {
-                case 1: return ".bas";
-                case 2: return ".cls";
-                case 3: return ".frm";
-                default:
-                    return null;
-            }
-        }
-
-        public void ExportVBA(Visio.Document doc, string path)
-        {
-            if (doc == null)
-                return;
-
-            var project = doc.VBProject;
-
-            if (project == null)
-                return;
-
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            ExportThisDocumentVBA(path, project);
-
-            foreach (var component in project.VBComponents)
-            {
-                var fileExtension = GetComponentFileExtension(component);
-                if (fileExtension == null)
-                    continue;
-
-                component.Export(Path.Combine(path, component.Name + fileExtension));
-            }
-        }
-
-        private static void ExportThisDocumentVBA(string path, dynamic project)
-        {
-            var thisDocumentComponent = project.VBComponents["ThisDocument"];
-            if (thisDocumentComponent != null)
-            {
-                var codeModule = thisDocumentComponent.CodeModule;
-                var countOfLines = Convert.ToInt32(codeModule.CountOfLines);
-                if (countOfLines > 0)
-                {
-                    var lines = codeModule.Lines(1, countOfLines);
-                    File.WriteAllText(Path.Combine(path, "ThisDocument.bas"), lines);
-                }
-            }
-        }
-
-        /// <summary>
-        /// A command to demonstrate conditionally enabling/disabling.
-        /// The command gets enabled only when a shape is selected
-        /// </summary>
-
-        public void ImportVBA(string folder, Settings settings)
-        {
-            var window = Application.ActiveWindow;
-            switch ((Visio.VisWinTypes)window.Type)
-            {
-                case Visio.VisWinTypes.visDrawing:
-                    {
-                        ImportVBA(window.Document, folder, settings);
-
-                        if (settings.IncludeStencils)
-                        {
-                            Array stencilNames;
-                            window.DockedStencils(out stencilNames);
-                            foreach (string stencilName in stencilNames)
-                            {
-                                var stencilDoc = Application.Documents[stencilName];
-
-                                var readOnly = stencilDoc.ReadOnly != 0;
-                                if (readOnly)
-                                {
-                                    stencilDoc.Close();
-                                    short flags = (short) Visio.VisOpenSaveArgs.visOpenDocked
-                                                | (short) Visio.VisOpenSaveArgs.visOpenRW;
-
-                                    stencilDoc = Application.Documents.OpenEx(stencilName, flags);
-                                }
-
-                                ImportVBA(stencilDoc, Path.Combine(folder, stencilDoc.Name), settings);
-                            }
-                        }
-                    }
-                    break;
-
-                case Visio.VisWinTypes.visStencil:
-                    ImportVBA(window.Document, folder, settings);
-                    break;
-            }
-        }
-
-        void ImportThisDocumentVBA(string filePath, dynamic project)
-        {
-            var thisDocumentComponent = project.VBComponents["ThisDocument"];
-            if (thisDocumentComponent != null)
-            {
-                var codeModule = thisDocumentComponent.CodeModule;
-                var countOfLines = Convert.ToInt32(codeModule.CountOfLines);
-                if (countOfLines > 0)
-                    codeModule.DeleteLines(1, countOfLines);
-
-                codeModule.AddFromString(File.ReadAllText(filePath));
-            }
-        }
-
-        void ImportVBA(Visio.Document doc, string path, Settings settings)
-        {
-            var project = doc.VBProject;
-
-            if (project == null)
-                return;
-
-            var files = Directory.GetFiles(path);
-
-            foreach (var component in project.VBComponents)
-            {
-                var fileExtension = GetComponentFileExtension(component);
-                if (fileExtension == null)
-                    continue;
-
-                if (settings.ClearBeforeImport || files.Any(f =>
-                    string.Compare(Path.GetFileNameWithoutExtension(f), component.Name, StringComparison.OrdinalIgnoreCase) == 0))
-                {
-                    project.VBComponents.Remove(component);
-                }
-            }
-
-            foreach (var file in files)
-            {
-                if (Path.GetFileName(file) == "ThisDocument.bas")
-                {
-                    ImportThisDocumentVBA(file, project);
-                    continue;
-                }
-
-                var extension = Path.GetExtension(file);
-                if (extension == null)
-                    continue;
-
-                switch (extension.ToLower())
-                {
-                    case ".cls":
-                    case ".frm":
-                    case ".bas":
-                        project.VBComponents.Import(file);
-                        break;
-                }
-            }
         }
 
         /// <summary>
@@ -226,7 +41,7 @@ namespace VisioImportExportVba
                             return;
                         }
 
-                        ExportVBA(settings.TargetFolder, settings);
+                        VisioVBA.ExportVBA(doc, settings.TargetFolder, settings);
                         MessageBox.Show(
                             string.Format("The VBA code was successfully exported from the document {0} to the folder {1} ", doc.Name, settings.TargetFolder),
                             "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -253,7 +68,7 @@ namespace VisioImportExportVba
                             return;
                         }
 
-                        ImportVBA(settings.TargetFolder, settings);
+                        VisioVBA.ImportVBA(doc, settings.TargetFolder, settings);
                         MessageBox.Show(
                             string.Format("The VBA code was successfully imported from the folder {0} to the document {1}", settings.TargetFolder, doc.Name),
                             "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -312,11 +127,11 @@ namespace VisioImportExportVba
                 case "ExportVBAFolder":
                 case "ImportVBAFolder":
                 case "ClearBeforeImport":
-                    return Application != null && Application.ActiveWindow != null;
+                    return Application != null && Application.ActiveDocument != null;
 
                 case "IncludeStencils":
-                    return Application != null && Application.ActiveDocument != null &&
-                           Application.ActiveWindow.Type == (short)Visio.VisWinTypes.visDrawing;
+                    return Application != null && Application.ActiveDocument != null && (
+                        Application.ActiveDocument.Type == Visio.VisDocumentTypes.visTypeDrawing || Application.ActiveDocument.Type == Visio.VisDocumentTypes.visTypeTemplate);
 
                 default:
                     return true;
