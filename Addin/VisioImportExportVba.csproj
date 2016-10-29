@@ -163,14 +163,11 @@
   <ItemGroup>
     <Content Include="Resources\ClearBeforeImport_sm.png" />
     <Content Include="Resources\ExportVBAFolder_sm.png" />
-    <Content Include="Resources\BatchImportVBA.png" />
     <Content Include="Resources\ImportVBA.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\ExportVBA_sm.png" />
-    <Content Include="Resources\BatchImportVBAFolder_sm.png" />
     <Content Include="Resources\ImportVBAFolder_sm.png" />
-    <Content Include="Resources\BatchImportVBA_sm.png" />
     <Content Include="Resources\IncludeStencils_sm.png" />
     <Content Include="Resources\ImportVBA_sm.png" />
   </ItemGroup>
