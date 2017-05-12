@@ -16,8 +16,8 @@
     <PublishUrl>ftp://ftp.unmanagedvisio.com/public_html/upload/visio_vba_import_export/</PublishUrl>
     <InstallUrl>http://unmanagedvisio.com/upload/visio_vba_import_export/</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.9</ApplicationVersion>
-    <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
+    <ApplicationVersion>1.0.2.9</ApplicationVersion>
+    <AutoIncrementApplicationRevision>false</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
@@ -81,13 +81,17 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C2F4FED19C51CDDF6CC2AA393894B30E4B778AA2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EAF1F8618E3F9BB13EA3E97F99625BF8894AE9B4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -143,7 +147,6 @@
     <Compile Include="ThisAddIn.Designer.cs">
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
-    <None Include="VisioImportExportVba_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -173,7 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddinRibbon.cs" />
-    <Content Include="Resources\Ribbon.xml" />
+    <Content Include="Resources\Ribbon.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImportExportVbaLib\ImportExportVbaLib.csproj">
