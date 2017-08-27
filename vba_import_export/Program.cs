@@ -71,7 +71,11 @@ namespace vba_import_export
                 IncludeStencils = opt.IncludeStencils
             };
 
-            var doc = app.Documents.OpenEx(opt.InputFile,
+            var inputFilePath = Path.IsPathRooted(opt.InputFile)
+                ? opt.InputFile
+                : Path.Combine(Environment.CurrentDirectory, opt.InputFile);
+
+            var doc = app.Documents.OpenEx(inputFilePath,
                 (short)Visio.VisOpenSaveArgs.visOpenCopy | (short)Visio.VisOpenSaveArgs.visOpenRO);
 
             var path = string.IsNullOrEmpty(opt.OutputDirectory)
@@ -98,7 +102,11 @@ namespace vba_import_export
 
             foreach (var inputFile in opt.InputFiles)
             {
-                var doc = app.Documents.OpenEx(inputFile,
+                var inputFilePath = Path.IsPathRooted(inputFile)
+                    ? inputFile
+                    : Path.Combine(Environment.CurrentDirectory, inputFile);
+
+                var doc = app.Documents.OpenEx(inputFilePath,
                     (short)Visio.VisOpenSaveArgs.visOpenRW);
 
                 var path = string.IsNullOrEmpty(opt.InputDirectory)
