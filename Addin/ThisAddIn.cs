@@ -68,7 +68,7 @@ namespace VisioImportExportVba
                             return;
                         }
 
-                        VisioVBA.ImportVBA(doc, settings.TargetFolder, settings);
+                        VisioVBA.ImportVBA(doc, settings.TargetFolder, settings, false);
                         MessageBox.Show(
                             string.Format("The VBA code was successfully imported from the folder {0} to the document {1}", settings.TargetFolder, doc.Name),
                             "VBA Import Export", MessageBoxButtons.OK, MessageBoxIcon.Information);

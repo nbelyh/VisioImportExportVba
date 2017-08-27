@@ -103,7 +103,9 @@ namespace vba_import_export
                     ? opt.InputDirectory
                     : Path.Combine(Environment.CurrentDirectory, opt.InputDirectory);
 
-                VisioVBA.ImportVBA(doc, path, settings);
+                VisioVBA.ImportVBA(doc, path, settings, true);
+
+                doc.Close();
             }
 
             app.Quit();

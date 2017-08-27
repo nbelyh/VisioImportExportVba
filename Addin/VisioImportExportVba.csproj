@@ -81,7 +81,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C2F4FED19C51CDDF6CC2AA393894B30E4B778AA2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EAF1F8618E3F9BB13EA3E97F99625BF8894AE9B4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

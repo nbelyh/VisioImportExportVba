@@ -14,7 +14,7 @@ namespace ImportExportVbaLib
                 .FirstOrDefault(w => w.Document != null && w.Document.ID == docId);
         }
 
-        public static void ImportVBA(Visio.Document doc, string folder, Settings settings)
+        public static void ImportVBA(Visio.Document doc, string folder, Settings settings, bool save)
         {
             if (doc.Type != Visio.VisDocumentTypes.visTypeDrawing &&
                 doc.Type != Visio.VisDocumentTypes.visTypeTemplate &&
@@ -22,6 +22,9 @@ namespace ImportExportVbaLib
                 return;
 
             VBA.ImportOneDocumentVBA(doc.VBProject, folder, settings);
+
+            if (save)
+                doc.Save();
 
             if (!settings.IncludeStencils)
                 return;
@@ -52,6 +55,8 @@ namespace ImportExportVbaLib
                 }
 
                 VBA.ImportOneDocumentVBA(stencilDoc.VBProject, Path.Combine(folder, stencilDoc.Name), settings);
+                if (save)
+                    stencilDoc.Save();
             }
         }
         
