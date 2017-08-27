@@ -76,7 +76,7 @@ namespace vba_import_export
                 : Path.Combine(Environment.CurrentDirectory, opt.InputFile);
 
             var doc = app.Documents.OpenEx(inputFilePath,
-                (short)Visio.VisOpenSaveArgs.visOpenCopy | (short)Visio.VisOpenSaveArgs.visOpenRO);
+                (short)Visio.VisOpenSaveArgs.visOpenCopy | (short)Visio.VisOpenSaveArgs.visOpenRO | (short)Visio.VisOpenSaveArgs.visOpenMacrosDisabled);
 
             var path = string.IsNullOrEmpty(opt.OutputDirectory)
                 ? Environment.CurrentDirectory
@@ -107,7 +107,7 @@ namespace vba_import_export
                     : Path.Combine(Environment.CurrentDirectory, inputFile);
 
                 var doc = app.Documents.OpenEx(inputFilePath,
-                    (short)Visio.VisOpenSaveArgs.visOpenRW);
+                    (short)Visio.VisOpenSaveArgs.visOpenRW | (short)Visio.VisOpenSaveArgs.visOpenMacrosDisabled);
 
                 var path = string.IsNullOrEmpty(opt.InputDirectory)
                     ? Environment.CurrentDirectory
