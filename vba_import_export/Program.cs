@@ -74,7 +74,9 @@ namespace vba_import_export
             var doc = app.Documents.OpenEx(opt.InputFile,
                 (short)Visio.VisOpenSaveArgs.visOpenCopy | (short)Visio.VisOpenSaveArgs.visOpenRO);
 
-            var path = Path.IsPathRooted(opt.OutputDirectory)
+            var path = string.IsNullOrEmpty(opt.OutputDirectory)
+                ? Environment.CurrentDirectory
+                : Path.IsPathRooted(opt.OutputDirectory)
                 ? opt.OutputDirectory
                 : Path.Combine(Environment.CurrentDirectory, opt.OutputDirectory);
 
@@ -99,7 +101,9 @@ namespace vba_import_export
                 var doc = app.Documents.OpenEx(inputFile,
                     (short)Visio.VisOpenSaveArgs.visOpenRW);
 
-                var path = Path.IsPathRooted(opt.InputDirectory)
+                var path = string.IsNullOrEmpty(opt.InputDirectory)
+                    ? Environment.CurrentDirectory
+                    : Path.IsPathRooted(opt.InputDirectory)
                     ? opt.InputDirectory
                     : Path.Combine(Environment.CurrentDirectory, opt.InputDirectory);
 

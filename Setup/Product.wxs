@@ -5,7 +5,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	xmlns:visio="http://schemas.microsoft.com/wix/Visio" >
 
-  <?define Version="1.0.2.0"?>
+  <?define Version="1.0.3.0"?>
   <?define UpgradeCode = "{64a3d6e9-3585-45cc-9c09-7336baac6476}" ?>
 
   <Product Id="*" Name="VisioImportExportVba" Language="1033" Version="$(var.Version)" Manufacturer="UnmanagedVisio" UpgradeCode="$(var.UpgradeCode)">
@@ -74,12 +74,23 @@
       <Component>
         <File Source="$(var.vba_import_export.TargetPath)" />
       </Component>
-      
+
       <Component>
         <File Source="$(var.vba_import_export.TargetDir)CommandLine.dll" />
       </Component>
-     
 
+      <Component>
+        <Condition><![CDATA[ALLUSERS<>1]]></Condition>
+        <RegistryValue Root="HKCU" Key="SOFTWARE\UnmanagedVisio\VbaImportExport" Type="string" Name="Path" Value="[APPLICATIONFOLDER]"/>
+        <Environment Id="Env_Path_CurrentUser" Action="set" Name="PATH" Part="last" Value="[APPLICATIONFOLDER]" System="no" />
+      </Component>
+      
+      <Component>
+        <Condition><![CDATA[ALLUSERS=1]]></Condition>
+        <RegistryValue Root="HKLM" Key="SOFTWARE\UnmanagedVisio\VbaImportExport" Type="string" Name="Path" Value="[APPLICATIONFOLDER]"/>
+        <Environment Id="Env_Path_AllUsers" Action="set" Name="PATH" Part="last" Value="[APPLICATIONFOLDER]" System="yes" />
+      </Component>
+      
       <!-- Add the addin dll to the setup. Reference using project referencing -->
       <Component>
         <File Source="$(var.VisioImportExportVba.TargetPath)" />
