@@ -5,7 +5,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	xmlns:visio="http://schemas.microsoft.com/wix/Visio" >
 
-  <?define Version="1.0.3.0"?>
+  <?define Version="111.111.111" ?>
   <?define UpgradeCode = "{64a3d6e9-3585-45cc-9c09-7336baac6476}" ?>
 
   <Product Id="*" Name="VisioImportExportVba" Language="1033" Version="$(var.Version)" Manufacturer="UnmanagedVisio" UpgradeCode="$(var.UpgradeCode)">
