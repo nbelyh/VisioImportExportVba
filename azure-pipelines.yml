@@ -1,0 +1,159 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+
+pr:
+- master
+
+# exernal variables:
+# CertPass
+# CertSha
+
+variables:
+- group: sectigo
+- name: solution 
+  value: '**/*.sln'
+- name: buildPlatform
+  value: 'Any CPU'
+- name: buildConfiguration
+  value: 'Release'
+- name: Version
+  value: '1.1'
+
+name: $(Version).$(DayOfYear)$(Rev:r)
+
+stages:
+- stage: Build
+  pool:
+    vmImage: 'vs2017-win2016'
+
+  jobs:
+  - job: Build
+    steps:
+
+    - task: PowerShell@2
+      displayName: Set Version
+      inputs:
+        targetType: 'inline'
+        script: |
+          $versionFull = "$(Build.BuildNumber)"
+          $version = $versionFull|%{[System.Version]$_}
+          $versionShort = "$($version.Major).$($version.Minor).$($version.Build)"
+          $versionTemplate = "111.111.111"
+          $files = 
+            "./Addin/VisioImportExportVba.csproj", 
+            "./Addin/Properties/AssemblyInfo.cs",
+            "./Setup/Product.wxs",
+            "./Setup/Setup.wixproj"
+          $files | ForEach-Object {
+            $file = $_
+            (Get-Content $file) | ForEach-Object { $_ -replace $versionTemplate, $versionShort } | Set-Content $file
+          }
+          Write-Host "##vso[task.setvariable variable=versionShort]$($versionShort)"
+
+    - task: DownloadSecureFile@1
+      displayName: Download Certificate
+      inputs:
+        secureFile: 'sectigo.pfx'
+
+    - task: PowerShell@2
+      displayName: import Certificate
+      inputs:
+        targetType: 'inline'
+        script: |
+          $pfx = "$env:DOWNLOADSECUREFILE_SECUREFILEPATH"
+          $pw = "$(CertPass)"
+          $pfxpass = $pw | ConvertTo-SecureString -AsPlainText -Force
+          Import-PfxCertificate -FilePath $pfx -CertStoreLocation Cert:\CurrentUser\My -Password $pfxpass 
+
+    - task: NuGetToolInstaller@1
+
+    - task: NuGetCommand@2
+
+    - task: VSBuild@1
+      displayName: Build solution
+      inputs:
+        solution: '$(solution)'
+        msbuildArgs: '/p:RunWixToolsOutOfProc=true'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+
+    - task: PowerShell@2
+      displayName: Sign files
+      inputs:
+        targetType: 'inline'
+        script: |
+          $timestampUrl = "http://timestamp.digicert.com"
+          Write-Host "TIMESTAMP " $timestampUrl
+
+          $signtool = "C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe"
+          Write-Host "SIGNTOOL " $signtool
+          
+          ForEach ($file in (Get-ChildItem "Setup\bin\Release\*.msi"))
+          {
+            Write-Host $file.FullName
+            &$signtool sign /n "Nikolay Belykh" /v /fd sha256 /tr $timestampUrl /td sha256 /d "Visio Import-Export VBA Addin" /du "https://unmanagedvisio.com" $file.FullName
+          }
+
+    - task: VSTest@2
+      displayName: Run  tests
+      inputs:
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish artifacts
+      inputs:
+        PathtoPublish: 'Setup\bin\Release'
+        ArtifactName: 'setup'
+        publishLocation: 'Container'
+
+- stage: Deploy
+  pool:
+    vmImage: 'vs2017-win2016'
+
+  jobs:
+  - job: Deploy
+    steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'setup'
+        downloadPath: '$(System.ArtifactsDirectory)'
+
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          $versionFull = "$(Build.BuildNumber)"
+          $version = $versionFull|%{[System.Version]$_}
+          $versionShort = "$($version.Major).$($version.Minor)"
+          Write-Host "##vso[task.setvariable variable=versionShort]$($versionShort)"
+
+    - task: GitHubRelease@1
+      inputs:
+        gitHubConnection: 'github.com_nbelyh'
+        repositoryName: '$(Build.Repository.Name)'
+        action: 'edit'
+        target: '$(Build.SourceVersion)'
+        tag: '$(versionShort)'
+        title: '$(Build.BuildNumber)'
+        releaseNotesSource: 'inline'
+        releaseNotesInline: 'TBD'
+        assets: '$(System.ArtifactsDirectory)\setup\*'
+        isPreRelease: true
+        changeLogCompareToRelease: 'lastFullRelease'
+        changeLogType: 'commitBased'
+
+    - task: AzureFileCopy@4
+      inputs:
+        SourcePath: '$(System.ArtifactsDirectory)\setup\*'
+        azureSubscription: 'Visual Studio Enterprise(f5564b95-9d43-4694-8b8e-faa0ce8c1d47)'
+        Destination: 'AzureBlob'
+        storage: 'uvreleases'
+        ContainerName: 'visioimportexportaddin'
